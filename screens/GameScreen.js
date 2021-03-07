@@ -101,7 +101,7 @@ const GameScreen = props => {
 		listContainerStyle = styles.listContainerBig
 	}
 
-	if (availableDeviceHeight < 400) {
+	if (availableDeviceHeight < 500) {
 		return (
 			<View style={styles.screen}>
 				<Text style={DefaultStyles.title}>Opponent's Guess</Text>
@@ -135,7 +135,12 @@ const GameScreen = props => {
 		<View style={styles.screen}>
 			<Text style={DefaultStyles.title}>Opponent's Guess</Text>
 			<NumberContainer>{currentGuess}</NumberContainer>
-			<Card style={styles.btnContainer}>
+			<Card
+				style={{
+					...styles.btnContainer,
+					...{ marginTop: availableDeviceHeight > 600 ? 20 : 5 },
+				}}
+			>
 				<MainButton onPress={nextGuessHandler.bind(this, 'lower')}>
 					<AntDesign name='down' size={24} color='white' />
 				</MainButton>
@@ -177,7 +182,6 @@ const styles = StyleSheet.create({
 	btnContainer: {
 		flexDirection: 'row',
 		justifyContent: 'space-around',
-		marginTop: Dimensions.get('window').height > 600 ? 20 : 5,
 		width: '80%',
 		maxWidth: '95%',
 		minWidth: 300,
